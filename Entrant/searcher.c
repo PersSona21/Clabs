@@ -2,7 +2,7 @@
 #include "Entrant.h"
 
 void usage() {
-	printf("Usage: <program name> <database name>\n");
+	printf("Usage: <program name> -f <database name>\n");
 }
 
 int hasDuplicate(int arr[4]) {
@@ -17,14 +17,14 @@ int hasDuplicate(int arr[4]) {
 }
 
 int main(int argc, char * argw[]) {
-	if (argc < 2) {
+	if (argc < 3 || argw[1][0] != '-' || argw[1][1] != 'f') {
 		usage();
 		return 1;
 	}
 
-	FILE * fileIn = fopen(argw[1], "rb");
+	FILE * fileIn = fopen(argw[2], "rb");
 	if (!fileIn) {
-		printf("Error: can't open file %s\n", argw[1]);
+		printf("Error: can't open file %s\n", argw[2]);
 		return 1;
 	}
 
